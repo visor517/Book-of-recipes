@@ -6,13 +6,22 @@ class RecipeCategory(models.Model):
     name = models.CharField(max_length=64, unique=True)
     description = models.TextField(blank=True, null=True)
 
+    def __str__(self):
+        return f'{self.name}'
+
 
 class Recipe(models.Model):
     category = models.ForeignKey(RecipeCategory, on_delete=models.PROTECT)
     name = models.CharField(max_length=256)
-    description = models.TextField(blank=True, null=True)
+    description = models.TextField()
+
+    def __str__(self):
+        return f'{self.name} | {self.category.name}'
 
 
 class RecipeImage(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='recipes_images')
+
+    def __str__(self):
+        return f'Image {self.id} for {self.recipe.name}'
