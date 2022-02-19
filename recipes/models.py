@@ -2,7 +2,6 @@ from django.db import models
 
 
 class RecipeCategory(models.Model):
-    alias = models.CharField(max_length=16, unique=True, primary_key=True)  # собираюсь использовать в url
     name = models.CharField(max_length=64, unique=True)
     description = models.TextField(blank=True, null=True)
 
@@ -25,3 +24,20 @@ class RecipeImage(models.Model):
 
     def __str__(self):
         return f'Image {self.id} for {self.recipe.name}'
+
+
+class Ingredient(models.Model):
+    name = models.CharField(max_length=32, unique=True)
+
+    def __str__(self):
+        return f'{self.name}'
+
+
+class RecipeIngredient(models.Model):
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    ingridient = models.ForeignKey(Ingredient, on_delete=models.PROTECT)
+    value = models.IntegerField(blank=True, null=True)
+    measure = models.CharField(max_length=16, blank=True, null=True)
+
+    def __str__(self):
+        return f'{self.recipe.name} - {self.ingridient.name}'
