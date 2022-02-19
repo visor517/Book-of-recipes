@@ -6,20 +6,17 @@
 <main id="main">
 
 <!-- ======= About Section ======= -->
-<section id="meal" class="about">
+<section class="about">
   <div class="container" data-aos="fade-up">
 
     <div class="row">
 
       <div class="col-lg-6 align-self-baseline">
-        <img src="{% static 'assets/img/about.jpg' %}" class="img-fluid" alt="">
+        <img src="/media/{{ recipe.image }}" class="img-fluid" alt="">
       </div>
 
       <div class="col-lg-6 pt-3 pt-lg-0 content">
-        <h3>Карточка рецепта</h3>
-        <p class="fst-italic">
-          А здесь какой-то текст
-        </p>
+        <h3>{{ recipe.name }}</h3>
         <ul>
           <li><i class="bx bx-check-double"></i> Сыр</li>
           <li><i class="bx bx-check-double"></i> Макароны</li>
@@ -27,7 +24,7 @@
           <li><i class="bx bx-check-double"></i> Немного соли</li>
         </ul>
         <p>
-          Описываем процесс приготовления
+            {{ recipe.description }}
         </p>
       </div>
 
@@ -35,43 +32,6 @@
 
   </div>
 </section><!-- End About Section -->
-
-<!-- ======= About Boxes Section ======= -->
-<section id="about-boxes" class="about-boxes">
-  <div class="container" data-aos="fade-up">
-
-    <div class="row">
-      <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-        <div class="card">
-          <img src="{% static 'assets/img/about-boxes-1.jpg' %}" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title"><a href="">Чипсы</a></h5>
-            <p class="card-text">Нежный молочно-карамельный напиток с добавлением рома согреет в теплые зимние вечера.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-        <div class="card">
-          <img src="{% static 'assets/img/about-boxes-2.jpg' %}" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title"><a href="">Бургер</a></h5>
-            <p class="card-text">Бургер классический – это разрезанная пополам булочка с жареной котлетой из мясного фарша в середине. Если приготовить бургер дома из натуральных и свежих продуктов, то фаст-фуд превратится не только во вкусную, но еще и полезную</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
-        <div class="card">
-          <img src="{% static 'assets/img/about-boxes-3.jpg' %}" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title"><a href="">Лангет из говядины</a></h5>
-            <p class="card-text">Лангет - тонкий, неширокий кусок говядины в форме языка, отбитый и обжаренный на сковороде. Лангет известен, как одно из наиболее простых в приготовлении блюд.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section><!-- End About Boxes Section -->
 
 </main><!-- End #main -->
 

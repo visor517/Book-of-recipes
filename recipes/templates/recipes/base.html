@@ -48,9 +48,9 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="/">Главная</a></li>
-          <li><a class="nav-link scrollto" href="/recipe">Рецепты</a></li>
-          <li><a class="nav-link scrollto" href="#meal2">Бургеры</a></li>
+          <li><a class="nav-link scrollto active" href="{% url 'index' %}">Главная</a></li>
+          <li><a class="nav-link scrollto" href="{% url 'recipes:recipe' %}">Рецепты</a></li>
+          <li><a class="nav-link scrollto" href="#">Бургеры</a></li>
           <li><a class="getstarted scrollto" href="#">Регистрация</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
