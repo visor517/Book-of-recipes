@@ -39,29 +39,46 @@
 <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center justify-content-between">
 
-        <div class="logo"><a href="">Book of recipes</a></div>
+        <div class="logo"><a href="/">Book of recipes</a></div>
 
-        <nav id="navbar" class="navbar">
-            <ul>
-                <li><a class="nav-link scrollto" href="{% url 'index' %}">Главная</a></li>
-                <li class="dropdown"><a href="#"><span>Категории</span> <i class="bi bi-chevron-down"></i></a>
-                    <ul>
-                        {% for category in categories %}
-                        <li><a href="/?category={{ category.id }}">{{ category.name }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </li>
-            </ul>
-            <i class="bi bi-list mobile-nav-toggle"></i>
-        </nav><!-- .navbar -->
+{#        <nav id="navbar" class="navbar">#}
+{#            <ul>#}
+{#                <li><a class="nav-link scrollto" href="{% url 'index' %}">Главная</a></li>#}
+{#            </ul>#}
+{#            <i class="bi bi-list mobile-nav-toggle"></i>#}
+{#        </nav><!-- .navbar -->#}
 
     </div>
 </header><!-- End Header -->
 
 <!-- ======= Hero Section ======= -->
-<section id="hero">
-    <div class="hero-container" data-aos="fade-up">
-        <h2>Рецепты и все такое</h2>
+<section id="hero" class="d-flex align-items-end">
+    <div class="container" data-aos="fade-up">
+        <div class="row d-flex justify-content-end">
+
+            <div class="search col-lg-6">
+                <form action="{% url 'index' %}" method="post" role="form" class="d-flex">
+                    {% csrf_token %}
+                    <div class="me-3 w-100">
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control" name="search" placeholder="Subject"
+                                   required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <select class="w-100" id="select-subject-ingredient" name="ingredients" multiple>
+                                {% for ingredient in ingredients %}
+                                    <option value="{{ ingredient.id }}">{{ ingredient.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit">Поиск</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
     </div>
 </section><!-- End Hero -->
 

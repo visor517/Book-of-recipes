@@ -5,32 +5,29 @@
 
 <main id="main">
 
-<!-- ======= About Section ======= -->
-<section class="about">
-  <div class="container" data-aos="fade-up">
+<!-- ======= Recipe Section ======= -->
+<section class="recipe">
+    <div class="container" data-aos="fade-up">
 
-    <div class="row">
+        <div class="row">
 
-      <div class="col-lg-6 align-self-baseline">
-        <img src="/media/{{ recipe.image }}" class="img-fluid" alt="">
-      </div>
-
-      <div class="col-lg-6 pt-3 pt-lg-0 content">
-        <h3>{{ recipe.name }}</h3>
-        <ul>
-          <li><i class="bx bx-check-double"></i> Сыр</li>
-          <li><i class="bx bx-check-double"></i> Макароны</li>
-          <li><i class="bx bx-check-double"></i> Тушенка</li>
-          <li><i class="bx bx-check-double"></i> Немного соли</li>
-        </ul>
-        <p>
-            {{ recipe.description }}
-        </p>
-      </div>
+            <div class="col-lg-6 align-self-baseline">
+                <img src="/media/{{ recipe.image }}" class="img-fluid" alt="">
+            </div>
+            <div class="col-lg-6 pt-3 pt-lg-0 content">
+                <h3>{{ recipe.name }}</h3>
+                <ul>
+                    {% for item in recipe.ingredients.all %}
+                    <li><i class="bx bx-check-double"></i> {{ item.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="pt-3 recipe-text">
+                {{ recipe.description }}
+            </div>
+        </div>
 
     </div>
-
-  </div>
 </section><!-- End About Section -->
 
 </main><!-- End #main -->

@@ -3,65 +3,59 @@
 
 {% block content %}
 
-    <main id="main">
+<main id="main">
 
-        {#<!-- ======= Search form ======= -->#}
-        {#<section id="meal" class="about">#}
-        {#  <div class="container" data-aos="fade-up">#}
-        {##}
-        {#    <div class="row">#}
-        {##}
-        {#      <div class="col-lg-6 align-self-baseline">#}
-        {#        <img src="{% static 'assets/img/about.jpg' %}" class="img-fluid" alt="">#}
-        {#      </div>#}
-        {##}
-        {#      <div class="col-lg-6 pt-3 pt-lg-0 content">#}
-        {#        <h3>Карточка рецепта</h3>#}
-        {#        <p class="fst-italic">#}
-        {#          А здесь какой-то текст#}
-        {#        </p>#}
-        {#        <ul>#}
-        {#          <li><i class="bx bx-check-double"></i> Сыр</li>#}
-        {#          <li><i class="bx bx-check-double"></i> Макароны</li>#}
-        {#          <li><i class="bx bx-check-double"></i> Тушенка</li>#}
-        {#          <li><i class="bx bx-check-double"></i> Немного соли</li>#}
-        {#        </ul>#}
-        {#        <p>#}
-        {#          Описываем процесс приготовления#}
-        {#        </p>#}
-        {#      </div>#}
-        {##}
-        {#    </div>#}
-        {##}
-        {#  </div>#}
-        {#</section><!-- End About Section -->#}
-
-        <!-- ======= About Boxes Section ======= -->
-        <section class="about-boxes">
-            <div class="container" data-aos="fade-up">
-                <div class="row">
-                {% for recipe in recipes %}
-                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="{% widthratio forloop.counter 1 100 %}">
-                        <div class="card">
-                            <div class="card-img-wrapper">
-                                <img src="/media/{{ recipe.image }}" class="card-img" alt="{{ recipe.name }}">
-                            </div>
-                            <div class="card-body">
-                                <h4 class="card-title"><a href="/recipe/{{ recipe.id }}">{{ recipe.name }}</a></h4>
-                                <p class="card-text">{{ recipe.description }}</p>
-                            </div>
-                            <div class="social">
-                                <a href="#"><i class="bi bi-twitter"></i></a>
-                                <a href="#"><i class="bi bi-facebook"></i></a>
-                                <a href="#"><i class="bi bi-instagram"></i></a>
-                            </div>
+<!-- ======= Recipe Boxes Section ======= -->
+<section class="recipe-boxes">
+    <div class="container" data-aos="fade-up">
+        <div class="row">
+            {% for recipe in recipes %}
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up"
+                     data-aos-delay="100">
+                    <div class="card">
+                        <div class="card-img-wrapper">
+                            <img src="/media/{{ recipe.image }}" class="card-img" alt="{{ recipe.name }}">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title"><a href="/recipe/{{ recipe.id }}">{{ recipe.name }}</a></h4>
+                            <p class="card-text">{{ recipe.description }}</p>
+                        </div>
+                        <div class="social">
+                            <a href="#"><i class="bi bi-twitter"></i></a>
+                            <a href="#"><i class="bi bi-facebook"></i></a>
+                            <a href="#"><i class="bi bi-instagram"></i></a>
                         </div>
                     </div>
-                {% endfor %}
                 </div>
-            </div>
-        </section><!-- End About Boxes Section -->
+            {% endfor %}
+        </div>
+        <div class="row">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item {% if not products.has_previous %}disabled{% endif %}">
+                        <a class="page-link"
+                           href="
+                                   {% if products.has_previous %}{% url 'products:page' products.previous_page_number %}
+                       {% else %}#{% endif %}">Предыдущая
+                        </a>
+                    </li>
+                    {% for page in products.paginator.page_range %}
+                        <li class="page-item">
+                            <a class="page-link" href="{% url 'products:page' page %}">{{ page }}</a>
+                        </li>
+                    {% endfor %}
+                    <li class="page-item {% if not products.has_next %}disabled{% endif %}">
+                        <a class="page-link"
+                           href="{% if products.has_next %}{% url 'products:page' products.next_page_number %}
+                       {% else %}#{% endif %}">Следующая
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section><!-- End Recipe Boxes Section -->
 
-    </main><!-- End #main -->
+</main>
 
 {% endblock %}
