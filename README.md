@@ -1,13 +1,27 @@
 # Book-of-recipes
 
-#### Добавление фикстур
-
+### Настройка проекта
+Создайте `.env` файл в корне репозитория:
 ```bash
-python manage.py loaddata recipes
+cp .env.dist .env
 ```
 
+### Сборка образов и запуск контейнеров
+В корне репозитория выполните команду:
+```bash
+docker-compose up --build
+```
+В процессе запуска миграции и фикстуры применяются сами.
 
+### Добавление суперпользователя 
+```bash
+docker-compose exec app python manage.py createsuperuser
+```
 
-Использовалось
-Docker version 20.10.7
-docker-compose version 1.25.0
+### Остановка контейнеров
+Для остановки контейнеров выполните команду:
+```bash
+docker-compose stop
+```
+
+Проект доступен по адресу http://127.0.0.1:8000
