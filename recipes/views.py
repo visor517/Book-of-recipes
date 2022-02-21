@@ -37,7 +37,7 @@ def index(request, page=1):
     for recipe_item in recipes:
         recipe_item.description = recipe_item.description[:128] + '...'  # сокращаем описание
 
-    paginator = Paginator(recipes, 3)
+    paginator = Paginator(recipes, 6)
     try:
         recipes_paginator = paginator.page(page)
     except PageNotAnInteger:
