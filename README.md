@@ -15,7 +15,7 @@ docker-compose up --build
 
 ### Добавление суперпользователя 
 ```bash
-docker-compose exec app python manage.py createsuperuser
+docker-compose exec backend python manage.py createsuperuser
 ```
 
 ### Остановка контейнеров
