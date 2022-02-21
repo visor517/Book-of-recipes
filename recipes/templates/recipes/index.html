@@ -17,7 +17,7 @@
                             <img src="/media/{{ recipe.image }}" class="card-img" alt="{{ recipe.name }}">
                         </div>
                         <div class="card-body">
-                            <h4 class="card-title"><a href="/recipe/{{ recipe.id }}">{{ recipe.name }}</a></h4>
+                            <h4 class="card-title text-uppercase"><a href="/recipe/{{ recipe.id }}">{{ recipe.name }}</a></h4>
                             <p class="card-text">{{ recipe.description }}</p>
                         </div>
                         <div class="social">
@@ -32,21 +32,21 @@
         <div class="row">
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
-                    <li class="page-item {% if not products.has_previous %}disabled{% endif %}">
+                    <li class="page-item {% if not recipes.has_previous %}disabled{% endif %}">
                         <a class="page-link"
                            href="
-                                   {% if products.has_previous %}{% url 'products:page' products.previous_page_number %}
+                                   {% if recipes.has_previous %}{% url 'page' recipes.previous_page_number %}
                        {% else %}#{% endif %}">Предыдущая
                         </a>
                     </li>
-                    {% for page in products.paginator.page_range %}
+                    {% for page in recipes.paginator.page_range %}
                         <li class="page-item">
-                            <a class="page-link" href="{% url 'products:page' page %}">{{ page }}</a>
+                            <a class="page-link" href="{% url 'page' page %}">{{ page }}</a>
                         </li>
                     {% endfor %}
-                    <li class="page-item {% if not products.has_next %}disabled{% endif %}">
+                    <li class="page-item {% if not recipes.has_next %}disabled{% endif %}">
                         <a class="page-link"
-                           href="{% if products.has_next %}{% url 'products:page' products.next_page_number %}
+                           href="{% if recipes.has_next %}{% url 'page' recipes.next_page_number %}
                        {% else %}#{% endif %}">Следующая
                         </a>
                     </li>

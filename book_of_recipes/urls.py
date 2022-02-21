@@ -23,6 +23,7 @@ from recipes.views import index, recipe
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
+    path('page/<int:page>/', index, name='page'),
     path('recipe/<int:recipe_id>/', recipe, name='recipe'),
 ]
 

@@ -15,7 +15,7 @@
                 <img src="/media/{{ recipe.image }}" class="img-fluid" alt="">
             </div>
             <div class="col-lg-6 pt-3 pt-lg-0 content">
-                <h3>{{ recipe.name }}</h3>
+                <h3 class="text-uppercase">{{ recipe.name }}</h3>
                 <ul>
                     {% for item in recipe.ingredients.all %}
                     <li><i class="bx bx-check-double"></i> {{ item.name }}</li>
