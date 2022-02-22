@@ -11,7 +11,8 @@ def index(request, page=1):
         'ingredients': Ingredient.objects.all().order_by('name'),
     }
 
-    query = Q()
+    recipes = Recipe.objects.prefetch_related('ingredients')
+
     if request.method == 'POST':
         try:
             search = request.POST.get('search')
@@ -23,21 +24,16 @@ def index(request, page=1):
             ingredients = None
 
         if search:
-            query.add(
-                Q(name__contains=search.lower()), Q.AND
-            )
+            recipes = recipes.filter(name__icontains=search)
 
         if ingredients:
-            for ingredient_id in ingredients:
-                query.add(
-                    Q(ingredients__pk=ingredient_id), Q.AND
-                )
+            for ingredient in ingredients:
+                recipes = recipes.filter(ingredients__pk=ingredient)
 
-    recipes = Recipe.objects.prefetch_related('ingredients').filter(query)
     for recipe_item in recipes:
         recipe_item.description = recipe_item.description[:128] + '...'  # сокращаем описание
 
-    paginator = Paginator(recipes, 3)
+    paginator = Paginator(recipes, 6)
     try:
         recipes_paginator = paginator.page(page)
     except PageNotAnInteger:
