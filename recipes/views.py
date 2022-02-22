@@ -13,22 +13,23 @@ def index(request, page=1):
 
     recipes = Recipe.objects.prefetch_related('ingredients')
 
-    if request.method == 'POST':
-        try:
-            search = request.POST.get('search')
-        except:
-            search = None
-        try:
-            ingredients = request.POST.getlist('ingredients')
-        except:
-            ingredients = None
+    print()
 
-        if search:
-            recipes = recipes.filter(name__icontains=search)
+    try:
+        search = request.GET.get('search')
+    except:
+        search = None
+    try:
+        ingredients = request.GET.getlist('ingredients')
+    except:
+        ingredients = None
 
-        if ingredients:
-            for ingredient in ingredients:
-                recipes = recipes.filter(ingredients__pk=ingredient)
+    if search:
+        recipes = recipes.filter(name__icontains=search)
+
+    if ingredients:
+        for ingredient in ingredients:
+            recipes = recipes.filter(ingredients__pk=ingredient)
 
     for recipe_item in recipes:
         recipe_item.description = recipe_item.description[:128] + '...'  # сокращаем описание
@@ -42,6 +43,9 @@ def index(request, page=1):
         recipes_paginator = paginator.page(paginator.num_pages)
 
     context['recipes'] = recipes_paginator
+
+    if '?' in request.get_raw_uri():
+        context['params'] = request.get_raw_uri().split('?')[1]
 
     return render(request, 'recipes/index.html', context)
 

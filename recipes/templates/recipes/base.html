@@ -57,8 +57,7 @@
         <div class="row d-flex justify-content-end">
 
             <div class="search col-lg-6">
-                <form action="{% url 'index' %}" method="post" role="form" class="d-flex">
-                    {% csrf_token %}
+                <form action="{% url 'index' %}" method="get" role="form" class="d-flex">
                     <div class="me-3 w-100">
                         <div class="form-group mb-3">
                             <input type="text" class="form-control" name="search" placeholder="Поиск в названии">
